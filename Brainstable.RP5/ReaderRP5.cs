@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -19,8 +18,6 @@ namespace Brainstable.RP5
         private bool isArchive = false;
         private string decompressFileName = String.Empty;
         private bool isCleanDecompress = true;
-
-        
 
         /// <summary>
         /// Метаданные
@@ -116,7 +113,6 @@ namespace Brainstable.RP5
             this.fileName = tempFileName; 
         }
 
-
         protected abstract string[] CreateArrayByLine(string fileName);
 
         /// <summary>
@@ -175,8 +171,5 @@ namespace Brainstable.RP5
         }
 
         #endregion
-
-        
-
     }
 }

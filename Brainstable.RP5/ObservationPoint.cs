@@ -8,7 +8,6 @@ namespace Brainstable.RP5
     /// </summary>
     public class ObservationPoint
     {
-
         #region Properties
 
         /// <summary>
@@ -246,7 +245,6 @@ namespace Brainstable.RP5
             return CreateFromArrayValues(stringValues, schema.Structure);
         }
 
-
         public static ObservationPoint CreateFromArrayValues(string[] stringValues, Dictionary<string, int> structure)
         {
             ObservationPoint p = null;
@@ -321,7 +319,6 @@ namespace Brainstable.RP5
 
             }
             return p;
-
         }
 
 

@@ -40,19 +40,15 @@ namespace Brainstable.RP5
                 //ZipArchive z = new ZipArchive(originalFileStream);
                 //z.GetEntry("").Open();
 
-
                 // Создаем файл
                 using (FileStream decompressedFileStream = File.Create(newFile))
                 {
-                    
                     using (GZipStream decompressionStream = new GZipStream(originalFileStream, CompressionMode.Decompress))
                     {
                         decompressionStream.CopyTo(decompressedFileStream);
                     }
                 }
             }
-            
-
             return newFile;
         }
 
@@ -77,87 +73,4 @@ namespace Brainstable.RP5
             return Decompress(fileNameGz, currentFolder);
         }
     }
-
-
-    /*
-    /// <summary>
-    /// Направление ветра
-    /// </summary>
-    internal enum WindDirection
-    {
-        /// <summary>
-        /// Штиль, безветрие
-        /// </summary>
-        Calm = 0,
-        /// <summary>
-        /// Переменное напраление
-        /// </summary>
-        Variable = 1,
-        /// <summary>
-        /// Севера
-        /// </summary>
-        N = 2,
-        /// <summary>
-        /// Северо-северо-востока
-        /// </summary>
-        NNE,
-        /// <summary>
-        /// Северо-востока
-        /// </summary>
-        NE,
-        /// <summary>
-        /// Востоко-северо-востока
-        /// </summary>
-        ENE,
-        /// <summary>
-        /// Востока
-        /// </summary>
-        E,
-        /// <summary>
-        /// Востоко-юго-востока
-        /// </summary>
-        ESE,
-        /// <summary>
-        /// Юго-востока
-        /// </summary>
-        SE,
-        /// <summary>
-        /// Юго-юго-востока
-        /// </summary>
-        SSE,
-        /// <summary>
-        /// Юга
-        /// </summary>
-        S,
-        /// <summary>
-        /// Юго-юго-запада
-        /// </summary>
-        SSW,
-        /// <summary>
-        /// Юго-запада
-        /// </summary>
-        SW,
-        /// <summary>
-        /// Западо-юго-запада
-        /// </summary>
-        WSW,
-        /// <summary>
-        /// Запада
-        /// </summary>
-        W,
-        /// <summary>
-        /// Западо-северо-запада
-        /// </summary>
-        WNW,
-        /// <summary>
-        /// Северо-запада
-        /// </summary>
-        NW,
-        /// <summary>
-        /// Северо-северо-запада
-        /// </summary>
-        NNW
-    }
-
-    */
 }

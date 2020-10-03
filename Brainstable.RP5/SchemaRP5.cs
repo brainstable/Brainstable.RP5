@@ -145,8 +145,6 @@ namespace Brainstable.RP5
             return String.Empty;
         }
 
-
-
         /// <summary>
         /// Получить оригинальное (без изменения регистра) имя поля
         /// </summary>

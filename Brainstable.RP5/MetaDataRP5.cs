@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace Brainstable.RP5
 {
@@ -105,7 +104,6 @@ namespace Brainstable.RP5
         /// </summary>
         public string Site { get; private set; }
 
-
         
         /// <summary>
         /// Начальная дата выборки
@@ -160,7 +158,6 @@ namespace Brainstable.RP5
 
         private MetaDataRP5()
         {
-            
         }
 
         #endregion
@@ -182,7 +179,6 @@ namespace Brainstable.RP5
                     meta = new MetaDataRP5();
                     meta.InitializeArray = arr;
                     
-
                     string[] s1 = arr[0].Split(',');
 
                     meta.Synoptic = SynopticRP5.CreateFromLine(arr[0]);
@@ -195,7 +191,6 @@ namespace Brainstable.RP5
                         meta.InnerTypeFetch = s1[4].Trim() + ", " + s1[5].Trim();
                     else if (s1.Length == 5)
                         meta.InnerTypeFetch = s1[4].Trim();
-
 
                     meta.InnerEncoding = arr[1].Replace("#", "").Trim();
                     meta.Encoding = meta.InnerEncoding.Replace("Кодировка:", "").Trim();
@@ -216,8 +211,6 @@ namespace Brainstable.RP5
 
             return meta;
         }
-
-
 
         /// <summary>
         /// Создать метаданные из файла Csv
@@ -266,7 +259,6 @@ namespace Brainstable.RP5
             {
                 url += $"/archive.php?wmo_id={numberStation}&lang=ru";
             }
-
             return url;
         }
 
@@ -298,7 +290,6 @@ namespace Brainstable.RP5
                            && arr[2].StartsWith("# Информация предоставлена сайтом") &&
                            arr[3].StartsWith("# Пожалуйста, при использовании данных") &&
                            arr[4].StartsWith("# Обозначения метеопараметров");
-
             return isValid;
         }
 

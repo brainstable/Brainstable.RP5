@@ -11,9 +11,7 @@ namespace Brainstable.RP5
     {
         private SortedList<DateTime, ObservationPoint> list;
 
-
         public IList<ObservationPoint> List => list.Values;
-
 
         public ObservationPoint this[string stringDateTime]
         {
@@ -35,7 +33,6 @@ namespace Brainstable.RP5
         {
             list = new SortedList<DateTime, ObservationPoint>(comparer);
         }
-
 
         public void Add(ObservationPoint point)
         {
@@ -75,7 +72,6 @@ namespace Brainstable.RP5
             }
         }
 
-
         public IEnumerator<ObservationPoint> GetEnumerator()
         {
             foreach (var point in list)
@@ -88,12 +84,5 @@ namespace Brainstable.RP5
         {
             return GetEnumerator();
         }
-
-
-        #region Static public methods
-
-        
-
-        #endregion
     }
 }

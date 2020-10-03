@@ -15,8 +15,6 @@
             return MetaDataRP5.CreateFromFileCsv(fileName);
         }
 
-
-        
         /// <summary>
         /// Прочитать схему
         /// </summary>

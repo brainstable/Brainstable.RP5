@@ -7,8 +7,12 @@ namespace Brainstable.RP5
     /// </summary>
     public class SynopticRP5
     {
+        #region Consts
+
         private const string WMO_ID = "WMO_ID";
         private const string METAR = "METAR";
+
+        #endregion
 
         #region Properties
 
@@ -98,7 +102,6 @@ namespace Brainstable.RP5
         public static SynopticRP5 CreateFromLine(string line)
         {
             SynopticRP5 synopticRp5 = null;
-
             try
             {
                 synopticRp5 = new SynopticRP5();
@@ -114,12 +117,9 @@ namespace Brainstable.RP5
             {
                     
             }
-
             return synopticRp5;
         }
 
         #endregion
-
-
     }
 }

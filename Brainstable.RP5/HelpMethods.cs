@@ -26,10 +26,6 @@ namespace Brainstable.RP5
             return encoding;
         }
 
-
-        
-
-
         /// <summary>
         /// Получить массив массивов данных из массива строк
         /// </summary>
@@ -64,8 +60,6 @@ namespace Brainstable.RP5
         //    return dict;
         //}
 
-
-
         /// <summary>
         /// Создание отсортированного от минимума до максимума набора точек наблюдения
         /// </summary>
@@ -90,9 +84,6 @@ namespace Brainstable.RP5
             }
             return set;
         }
-
-
-        
 
         /// <summary>
         /// Получить массив строк для вывода в csv
@@ -228,8 +219,6 @@ namespace Brainstable.RP5
             sb.Append(observationPoint.Tg + separator);
             sb.Append(observationPoint.Es + separator);
             sb.Append(observationPoint.SSS);
-
-
             return sb.ToString();
         }
     }
