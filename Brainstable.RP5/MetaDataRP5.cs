@@ -219,28 +219,7 @@ namespace Brainstable.RP5
         /// <returns>Метаданные</returns>
         public static MetaDataRP5 CreateFromFileCsv(string fileName)
         {
-            MetaDataRP5 meta = null;
-            try
-            {
-                int counter = 0;
-                string line;
-                string[] arr = new string[5];
-
-                StreamReader file = new StreamReader(fileName, HelpMethods.CreateEncoding(fileName));
-                while ((line = file.ReadLine()) != null)
-                {
-                    arr[counter++] = line;
-                    if (counter == arr.Length)
-                        break;
-                }
-                file.Close();
-                meta = CreateFromArrayString(arr);
-            }
-            catch (Exception e)
-            {
-                
-            }
-            return meta;
+            return FastReaderRP5.ReadMetaDataFromCsv(fileName);
         }
 
         /// <summary>

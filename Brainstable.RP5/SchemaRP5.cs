@@ -289,42 +289,7 @@ namespace Brainstable.RP5
         /// <returns>Схема</returns>
         public static SchemaRP5 CreateFromFileCsv(string fileName)
         {
-            SchemaRP5 schema = null;
-            try
-            {
-                int counter = 0;
-                string line;
-                List<string> list = new List<string>();
-                StreamReader file = new StreamReader(fileName, HelpMethods.CreateEncoding(fileName));
-                while ((line = file.ReadLine()) != null)
-                {
-                    if (counter == 6)
-                        break;
-                    counter++;
-                }
-                file.Close();
-                string[] arr = line.Trim().Replace("\"", "").Split(';');
-                for (int i = 0; i < arr.Length; i++)
-                {
-                    if (i == arr.Length - 1)
-                    {
-                        if (string.IsNullOrEmpty(arr[i]))
-                        {
-                            continue;
-                        }
-                    }
-                    list.Add(arr[i]);
-                }
-
-                schema = CreateFromArraySchema(list.ToArray());
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                throw;
-            }
-
-            return schema;
+            return FastReaderRP5.ReadSchemaFromCsv(fileName);
         }
 
         #endregion
