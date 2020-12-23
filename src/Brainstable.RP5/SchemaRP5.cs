@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace Brainstable.RP5
 {
@@ -66,9 +65,7 @@ namespace Brainstable.RP5
 
         private SchemaRP5(string lineSchema) :
             this(CreateSchemaByLine(lineSchema))
-        {
-            
-        }
+        { }
 
         private SchemaRP5(string[] schema)
         {

@@ -38,6 +38,8 @@
   <ItemGroup>
     <Compile Include="GZ.cs" />
     <Compile Include="HelpMethods.cs" />
+    <Compile Include="IReaderRP5.cs" />
+    <Compile Include="Merge.cs" />
     <Compile Include="MetaDataRP5.cs" />
     <Compile Include="ObservationPoint.cs" />
     <Compile Include="ObservationPointComparerDownInUp.cs" />

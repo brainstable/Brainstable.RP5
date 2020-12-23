@@ -53,10 +53,12 @@ namespace Brainstable.RP5
         /// Файл является архивом
         /// </summary>
         public bool IsArchive => isArchive;
+
         /// <summary>
         /// Путь к разархивируемому файлу
         /// </summary>
         public string DecompessFileName => decompressFileName;
+
         /// <summary>
         /// Удалять разархивированный файл
         /// </summary>

@@ -1,0 +1,15 @@
+﻿using System.Collections.Generic;
+
+namespace Brainstable.RP5
+{
+    public interface IReaderRP5
+    {
+        MetaDataRP5 MetaData { get; }
+        SchemaRP5 Schema { get; }
+        List<string> ReadToListString(string fileName);
+        Dictionary<string, string> ReadToDictionaryString(string fileName);
+        List<ObservationPoint> ReadToListObservationPoints(string fileName);
+        Dictionary<string, ObservationPoint> ReadToDictionaryObservationPoints(string fileName);
+        SortedSet<ObservationPoint> ReadToSortedSetObservationPoints(string fileName, IComparer<ObservationPoint> comparer);
+    }
+}
