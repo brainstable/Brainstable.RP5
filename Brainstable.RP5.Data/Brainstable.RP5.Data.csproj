@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="IDataRP5.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerDataRp5.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Brainstable.RP5\Brainstable.RP5.csproj">
