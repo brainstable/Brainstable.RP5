@@ -11,7 +11,7 @@ namespace Brainstable.RP5.Test
         [SetUp]
         public void Initialize()
         {
-            fileNameAllDays = Environment.CurrentDirectory + "\\Data\\29866.01.01.2020.05.09.2020.1.0.0.ru.ansi.00000000.csv";
+            fileNameAllDays = "D:\\source\\BrainstableRepos\\Brainstable.RP5\\tests\\Brainstable.RP5.Test\\bin\\Debug\\Data\\29866.01.01.2020.05.09.2020.1.0.0.ru.ansi.00000000.csv";
         }
 
         [Test]

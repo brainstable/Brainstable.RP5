@@ -30,7 +30,7 @@ namespace Brainstable.RP5
 
         public void Join(string outFileName, string fileName1, string fileName2)
         {
-            ReaderRP5 reader1 = new ReaderRP5Csv();
+            ReaderRP5 reader1 = new ReaderRP5();
 
 
         }

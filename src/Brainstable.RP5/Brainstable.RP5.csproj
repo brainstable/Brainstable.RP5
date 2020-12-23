@@ -46,7 +46,6 @@
     <Compile Include="ObservationPointComparerUpInDown.cs" />
     <Compile Include="ObservationPoints.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReaderRP5Csv.cs" />
     <Compile Include="FastReaderRP5.cs" />
     <Compile Include="ReaderRP5.cs" />
     <Compile Include="SchemaRP5.cs" />
