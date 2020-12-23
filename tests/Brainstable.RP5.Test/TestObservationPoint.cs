@@ -2,7 +2,6 @@
 
 namespace Brainstable.RP5.Test
 {
-
     [TestFixture]
     public class TestObservationPoint
     {
@@ -12,18 +11,12 @@ namespace Brainstable.RP5.Test
         private string lineSchema =
             "\"Местное время в Минусинске\";\"T\";\"Po\";\"P\";\"Pa\";\"U\";\"DD\";\"Ff\";\"ff10\";\"ff3\";\"N\";\"WW\";\"W1\";\"W2\";\"Tn\";\"Tx\";\"Cl\";\"Nh\";\"H\";\"Cm\";\"Ch\";\"VV\";\"Td\";\"RRR\";\"tR\";\"E\";\"Tg\";\"E'\";\"sss\"";
 
-
         private ObservationPoint p;
-
-
 
         [SetUp]
         public void InitializeData()
         {
-
             p = ObservationPoint.CreateFromLine(line, SchemaRP5.CreateFromLineSchema(lineSchema));
-
-            ;
         }
 
         [Test]

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using NUnit.Framework.Internal;
+﻿using NUnit.Framework;
 
 namespace Brainstable.RP5.Test
 {
-    [TestFixture()]
+    [TestFixture]
     public class TestSynopticRP5
     {
         string line = "# Метеостанция Минусинск, Россия, WMO_ID=29866, выборка с 01.01.2020 по 05.09.2020, все дни";
@@ -18,7 +12,6 @@ namespace Brainstable.RP5.Test
         public void InitializeData()
         {
             synoptic = SynopticRP5.CreateFromLine(line);
-            ;
         }
 
         [Test]
@@ -48,6 +41,5 @@ namespace Brainstable.RP5.Test
             Assert.IsTrue(syn.TypeSynopticRp5 == TypeSynopticRP5.Unknown);
             Assert.IsTrue(syn.StringTypeSynoptic == "Unknown");
         }
-
     }
 }

@@ -2,13 +2,12 @@
 
 namespace Brainstable.RP5.Test
 {
-    [TestFixture()]
+    [TestFixture]
     public class TestSchemaRP5
     {
         private string line = "\"Местное время в Минусинске\";\"T\";\"Po\";\"P\";\"Pa\";\"U\";\"DD\";\"Ff\";\"ff10\";\"ff3\";\"N\";\"WW\";\"W1\";\"W2\";\"Tn\";\"Tx\";\"Cl\";\"Nh\";\"H\";\"Cm\";\"Ch\";\"VV\";\"Td\";\"RRR\";\"tR\";\"E\";\"Tg\";\"E'\";\"sss\"";
         private SchemaRP5 schema;
-
-
+        
         [SetUp]
         public void CreateSchema()
         {

@@ -8,7 +8,6 @@ namespace Brainstable.RP5.Test
     {
         private MetaDataRP5 meta;
 
-
         [SetUp]
         public void InitializeData()
         {
@@ -20,7 +19,6 @@ namespace Brainstable.RP5.Test
             arr[4] = "# Обозначения метеопараметров см. по адресу http://rp5.ru/archive.php?wmo_id=29866&lang=ru";
 
             meta = MetaDataRP5.CreateFromArrayString(arr);
-            ;
         }
 
         [Test]
@@ -58,6 +56,5 @@ namespace Brainstable.RP5.Test
             Assert.IsTrue(meta.StartFetch == Convert.ToDateTime("01.01.2020"));
             Assert.IsTrue(meta.EndFetch == Convert.ToDateTime("05.09.2020"));
         }
-
     }
 }
