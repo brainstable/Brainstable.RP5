@@ -47,8 +47,81 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestFastReaderRP5Csv.cs" />
+    <Compile Include="TestMetaDataRP5.cs" />
+    <Compile Include="TestObservationPoint.cs" />
+    <Compile Include="TestReaderArchCsvAllDays.cs" />
+    <Compile Include="TestReaderCsvAllDays.cs" />
+    <Compile Include="TestSchemaRP5.cs" />
+    <Compile Include="TestSynopticRP5.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\29866.01.01.2020.05.09.2020.1.0.0.ru.ansi.00000000.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\29866.01.01.2020.05.09.2020.1.0.0.ru.ansi.00000000.csv.gz">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\29866.01.01.2020.05.09.2020.1.0.0.ru.utf8.00000000.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\29866.01.01.2020.05.09.2020.1.0.0.ru.utf8.00000000.csv.gz">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\29866.01.01.2020.05.09.2020.1.0.0.ru.utf8.00000000.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\29866.01.01.2020.05.09.2020.1.0.0.ru.utf8.00000000.xls.gz">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\29866.01.01.2020.05.09.2020.2.5.0.ru.ansi.00000000.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\29866.01.01.2020.05.09.2020.2.5.0.ru.ansi.00000000.csv.gz">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\29866.01.01.2020.05.09.2020.2.5.0.ru.unic.00000000.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\29866.01.01.2020.05.09.2020.2.5.0.ru.unic.00000000.csv.gz">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\29866.01.01.2020.05.09.2020.2.5.0.ru.utf8.00000000.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\29866.01.01.2020.05.09.2020.2.5.0.ru.utf8.00000000.csv.gz">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\29866.01.01.2020.05.09.2020.2.5.0.ru.utf8.00000000.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\29866.01.01.2020.05.09.2020.2.5.0.ru.utf8.00000000.xls.gz">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\29866.01.01.2020.05.09.2020.3.8.1.ru.ansi.00000000.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\29866.01.01.2020.05.09.2020.3.8.1.ru.ansi.00000000.csv.gz">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\29866.01.01.2020.05.09.2020.3.8.1.ru.unic.00000000.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\29866.01.01.2020.05.09.2020.3.8.1.ru.unic.00000000.csv.gz">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\29866.01.01.2020.05.09.2020.3.8.1.ru.utf8.00000000.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\29866.01.01.2020.05.09.2020.3.8.1.ru.utf8.00000000.csv.gz">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\29866.01.01.2020.05.09.2020.3.8.1.ru.utf8.00000000.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\29866.01.01.2020.05.09.2020.3.8.1.ru.utf8.00000000.xls.gz">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +130,7 @@
       <Name>Brainstable.RP5</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
