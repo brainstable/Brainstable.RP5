@@ -120,9 +120,32 @@ namespace Brainstable.RP5
             return list;
         }
 
-        public static string[] ReadArrayStringFromCsv(string fileName)
+        public static Dictionary<string, string> ReadDictionaryStringFromCsv(string fileName)
         {
-            return ReadListStringFromCsv(fileName).ToArray();
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            try
+            {
+                int counter = 0;
+                string line;
+                StreamReader file = new StreamReader(fileName, HelpMethods.CreateEncoding(fileName));
+                while ((line = file.ReadLine()) != null)
+                {
+                    if (counter > 6)
+                    {
+                        string key = line.Substring(1, 16);
+                        dictionary[key] = line;
+                    }
+                    counter++;
+                }
+                file.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+
+            return dictionary;
         }
 
         public static List<ObservationPoint> ReadListObservationPointsFromCsv(string fileName)
@@ -154,6 +177,38 @@ namespace Brainstable.RP5
                 throw;
             }
             return list;
+        }
+
+        public static Dictionary<string, ObservationPoint> ReadDictionaryObservationPointsFromCsv(string fileName)
+        {
+            Dictionary<string, ObservationPoint> dictionary = new Dictionary<string, ObservationPoint>();
+            try
+            {
+                int counter = 0;
+                string line;
+                StreamReader file = new StreamReader(fileName, HelpMethods.CreateEncoding(fileName));
+                SchemaRP5 schema = null;
+                while ((line = file.ReadLine()) != null)
+                {
+                    if (counter == 6)
+                    {
+                        schema = CreateSchemaRp5(line);
+                    }
+                    if (counter > 6)
+                    {
+                        ObservationPoint observationPoint = ObservationPoint.CreateFromLine(line, schema);
+                        dictionary[observationPoint.ToString()] = observationPoint;
+                    }
+                    counter++;
+                }
+                file.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+            return dictionary;
         }
 
         public static SortedSet<ObservationPoint> ReadSortedSetObservationPointsFromCsv(string fileName, 
