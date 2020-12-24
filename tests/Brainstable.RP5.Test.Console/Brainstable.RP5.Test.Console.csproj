@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Merge\29766.01.12.2020.17.12.2020.1.0.0.ru.ansi.00000000.csv.gz">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Merge\29766.10.12.2020.24.12.2020.1.0.0.ru.utf8.00000000.csv.gz">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Brainstable.RP5\Brainstable.RP5.csproj">
@@ -54,5 +60,6 @@
       <Name>Brainstable.RP5</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

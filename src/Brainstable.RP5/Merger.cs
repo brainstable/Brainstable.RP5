@@ -19,14 +19,11 @@ namespace Brainstable.RP5
 
         #region Properties
 
-        /// <summary>
-        /// Кодировка ANSI по умолчанию для выходного файла (для корректного отображения в Excel)
-        /// </summary>
         public Encoding Encoding => encoding;
 
         #endregion
 
-        public string Join(string fileName1, string fileName2)
+        public SortedSet<ObservationPoint> JoinToSet(string fileName1, string fileName2)
         {
             IReaderRP5 reader1 = new ReaderRP5();
             var set1 = reader1.ReadToSortedSetObservationPoints(fileName1, new ObservationPointComparerUpInDown());
@@ -38,6 +35,30 @@ namespace Brainstable.RP5
 
             set1.UnionWith(set2);
 
+            return set1;
+        }
+
+        public SortedSet<ObservationPoint> JoinToSet(string fileName1, params string[] fileNames)
+        {
+            IReaderRP5 reader1 = new ReaderRP5();
+            var set1 = reader1.ReadToSortedSetObservationPoints(fileName1, new ObservationPointComparerUpInDown());
+            metaData = reader1.MetaData;
+            schema = reader1.Schema;
+
+            IReaderRP5 reader2 = new ReaderRP5();
+            for (int i = 0; i < fileNames.Length; i++)
+            {
+                var set2 = reader2.ReadToSortedSetObservationPoints(fileNames[i], new ObservationPointComparerDownInUp());
+                set1.UnionWith(set2);
+            }
+
+            return set1;
+        }
+
+        public string JoinToFile(string fileName1, string fileName2)
+        {
+            var set1 = JoinToSet(fileName1, fileName2);
+
             string outDir = Path.GetDirectoryName(fileName1);
             string outFilename = Path.Combine(outDir, CreateFileName(metaData.Synoptic.Identificator, set1.Max.DateTime, set1.Min.DateTime));
 
@@ -47,7 +68,22 @@ namespace Brainstable.RP5
             WriteSet(writer, set1, schema.Schema);
 
             writer.Close();
+            return outFilename;
+        }
 
+        public string JoinToFile(string fileName1, params string[] fileNames)
+        {
+            var set1 = JoinToSet(fileName1, fileNames);
+
+            string outDir = Path.GetDirectoryName(fileName1);
+            string outFilename = Path.Combine(outDir, CreateFileName(metaData.Synoptic.Identificator, set1.Max.DateTime, set1.Min.DateTime));
+
+            StreamWriter writer = new StreamWriter(outFilename, false, encoding);
+            WriteMetaData(writer, metaData, set1.Max.DateTime, set1.Min.DateTime);
+            WriteSchema(writer, schema.Schema);
+            WriteSet(writer, set1, schema.Schema);
+
+            writer.Close();
             return outFilename;
         }
 
@@ -146,7 +182,7 @@ namespace Brainstable.RP5
                 }
                 if (hash.Contains(nameof(p.Tx).ToUpper()))
                 {
-                    writer.Write($"\"{p.Tx}\";");=
+                    writer.Write($"\"{p.Tx}\";");
                 }
                 if (hash.Contains(nameof(p.C).ToUpper()))
                 {
@@ -204,6 +240,7 @@ namespace Brainstable.RP5
                 {
                     writer.Write($"\"{p.SSS}\";");
                 }
+                writer.Write(Environment.NewLine);
             }
         }
 

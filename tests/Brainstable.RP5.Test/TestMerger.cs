@@ -27,7 +27,7 @@ namespace Brainstable.RP5.Test
         public void TestOutFileName()
         {
             Merger merger = new Merger();
-            string outFileName = merger.Join(fileName1, fileName2);
+            string outFileName = merger.JoinToFile(fileName1, fileName2);
             Assert.IsTrue(Path.GetFileName(outFileName) == "29766.01.12.2020.24.12.2020.1.0.0.ru.ansi.00000000.csv");
         }
     }
