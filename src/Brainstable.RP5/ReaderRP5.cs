@@ -1,175 +1,106 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
 namespace Brainstable.RP5
 {
     /// <summary>
-    /// Класс для чтения файлов RP5 и их архивов
+    /// Класс для чтения csv-файлов RP5 и их архивов
     /// </summary>
-    public abstract class ReaderRP5
+    public class ReaderRP5 : IReaderRP5, IDisposable
     {
         private MetaDataRP5 metaDataRp5;
         private string[] stringArrayData;
         private SchemaRP5 schema;
         private Encoding encoding;
         private TypeLoadFileRP5 typeLoadFileRp5 = TypeLoadFileRP5.Unknown;
-        private string fileName;
+        private string pathSource;
         private bool isArchive = false;
-        private string decompressFileName = String.Empty;
         private bool isCleanDecompress = true;
 
         /// <summary>
         /// Метаданные
         /// </summary>
-        public MetaDataRP5 MetaDataRP5 => metaDataRp5;
-
-        /// <summary>
-        /// Массив строк с данными
-        /// </summary>
-        public string[] StringArrayData => stringArrayData;
+        public MetaDataRP5 MetaData => metaDataRp5;
 
         /// <summary>
         /// Схема
         /// </summary>
         public SchemaRP5 Schema => schema;
 
-        /// <summary>
-        /// Кодировка файла
-        /// </summary>
-        public Encoding Encoding => encoding;
-
-        /// <summary>
-        /// Тип загружаемого файла
-        /// </summary>
-        public TypeLoadFileRP5 TypeLoadFileRp5 => typeLoadFileRp5;
-
-        /// <summary>
-        /// Путь к файлу
-        /// </summary>
-        public string FileName => fileName;
-
-        /// <summary>
-        /// Файл является архивом
-        /// </summary>
-        public bool IsArchive => isArchive;
-        /// <summary>
-        /// Путь к разархивируемому файлу
-        /// </summary>
-        public string DecompessFileName => decompressFileName;
-        /// <summary>
-        /// Удалять разархивированный файл
-        /// </summary>
-        public bool IsCleanDecompress => isCleanDecompress;
-
-        public virtual void Read(string fileName, bool isCleanDecompess = true)
+        public List<string> ReadToListString(string fileName)
         {
-            string tempFileName = fileName; // сохраняем временно оригинальный путь к файлу
-            
-            this.fileName = fileName;
+            ReadWithoutData(fileName);
+            var list = FastReaderRP5.ReadListStringFromCsv(pathSource);
+            Dispose();
+            return list;
+        }
 
+        public Dictionary<string, string> ReadToDictionaryString(string fileName)
+        {
+            ReadWithoutData(fileName);
+            var dict = FastReaderRP5.ReadDictionaryStringFromCsv(pathSource);
+            Dispose();
+            return dict;
+        }
+
+        public List<ObservationPoint> ReadToListObservationPoints(string fileName)
+        {
+            ReadWithoutData(fileName);
+            var list = FastReaderRP5.ReadListObservationPointsFromCsv(pathSource);
+            Dispose();
+            return list;
+        }
+
+        public Dictionary<string, ObservationPoint> ReadToDictionaryObservationPoints(string fileName)
+        {
+            ReadWithoutData(fileName);
+            var dict = FastReaderRP5.ReadDictionaryObservationPointsFromCsv(pathSource);
+            Dispose();
+            return dict;
+        }
+
+        public SortedSet<ObservationPoint> ReadToSortedSetObservationPoints(string fileName, IComparer<ObservationPoint> comparer)
+        {
+            ReadWithoutData(fileName);
+            var set = FastReaderRP5.ReadSortedSetObservationPointsFromCsv(pathSource, comparer);
+            return set;
+        }
+
+        public void ReadWithoutData(string fileName)
+        {
+            this.pathSource = fileName;
             isArchive = false;
-            decompressFileName = String.Empty;
-            this.isCleanDecompress = isCleanDecompess;
-
             encoding = HelpMethods.CreateEncoding(fileName);
-
             string extension = Path.GetExtension(fileName);
 
-            // Проверяем является ли файл архивом
-            // если Да
             if (extension.Contains("gz"))
             {
-                // то разорхивируем файл
-                
-                this.fileName = GZ.DecompressTempFolder(fileName);
-                decompressFileName = this.fileName;
+                pathSource = GZ.DecompressTempFolder(fileName);
                 isArchive = true;
             }
 
-            // Проверяем является ли файлом CSV
-            if (this.fileName.EndsWith("csv"))
+            if (pathSource.EndsWith("csv"))
             {
                 typeLoadFileRp5 = isArchive ? TypeLoadFileRP5.ArchCsv : TypeLoadFileRP5.Csv;
             }
-            // Проверяем является ли файлом Excel
-            if (this.fileName.EndsWith("xls"))
+            if (pathSource.EndsWith("xls"))
             {
                 typeLoadFileRp5 = isArchive ? TypeLoadFileRP5.ArchXls : TypeLoadFileRP5.Xls;
             }
-            
-            string[] arr = CreateArrayByLine(this.fileName);
 
-            metaDataRp5 = GetMetaDataRp5(arr);
-            schema = GetSchema(arr);
-            stringArrayData = GetStringArray(arr);
+            metaDataRp5 = FastReaderRP5.ReadMetaDataFromCsv(pathSource);
+            schema = FastReaderRP5.ReadSchemaFromCsv(pathSource);
+        }
 
-            // Если архив, то удаляем извлеченный файл
-            if (isCleanDecompess && isArchive)
+        public void Dispose()
+        {
+            if (isCleanDecompress && isArchive)
             {
-                if (File.Exists(this.fileName))
-                    File.Delete(this.fileName);
+                if (File.Exists(this.pathSource))
+                    File.Delete(this.pathSource);
             }
-            this.fileName = tempFileName; 
         }
-
-        protected abstract string[] CreateArrayByLine(string fileName);
-
-        /// <summary>
-        /// Очистить (удалить) разархивированный файл
-        /// </summary>
-        /// <returns>True - файл успешно удален</returns>
-        public bool CleanDecompress()
-        {
-            if (decompressFileName.Length > 0)
-            {
-                if (File.Exists(decompressFileName))
-                {
-                    File.Delete(decompressFileName);
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        #region Private methods
-
-        private MetaDataRP5 GetMetaDataRp5(string[] arr)
-        {
-            string[] arrMetaData = new string[5];
-            for (int i = 0; i < arrMetaData.Length; i++)
-            {
-                arrMetaData[i] = arr[i];
-            }
-            return MetaDataRP5.CreateFromArrayString(arrMetaData);
-        }
-
-        /// <summary>
-        /// Получить массив строк
-        /// </summary>
-        /// <returns>Массив строк</returns>
-        private string[] GetStringArray(string[] arr)
-        {
-            string[] target = new string[arr.Length - 7];
-            Array.Copy(arr, 7, target, 0, target.Length);
-            return target;
-        }
-
-        /// <summary>
-        /// Получить схему
-        /// </summary>
-        /// <returns>Схема</returns>
-        private SchemaRP5 GetSchema(string[] arr)
-        {
-            return SchemaRP5.CreateFromLineSchema(arr[6]);
-        }
-
-        private bool Validate(string fileName)
-        {
-            return true;
-        }
-
-        #endregion
     }
 }

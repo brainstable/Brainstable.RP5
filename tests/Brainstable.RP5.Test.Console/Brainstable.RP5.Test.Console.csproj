@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{715769A4-6B6F-4133-8CD7-ADA2889E03B1}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Brainstable.RP5</RootNamespace>
-    <AssemblyName>Brainstable.RP5</AssemblyName>
+    <ProjectGuid>{897CE580-BFAA-401C-80D4-0CA027DA40BC}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Brainstable.RP5.Test.Console</RootNamespace>
+    <AssemblyName>Brainstable.RP5.Test.Console</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,26 +34,32 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GZ.cs" />
-    <Compile Include="HelpMethods.cs" />
-    <Compile Include="IReaderRP5.cs" />
-    <Compile Include="Merger.cs" />
-    <Compile Include="MetaDataRP5.cs" />
-    <Compile Include="ObservationPoint.cs" />
-    <Compile Include="ObservationPointComparerDownInUp.cs" />
-    <Compile Include="ObservationPointComparerUpInDown.cs" />
-    <Compile Include="ObservationPoints.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="FastReaderRP5.cs" />
-    <Compile Include="ReaderRP5.cs" />
-    <Compile Include="SchemaRP5.cs" />
-    <Compile Include="SynopticRP5.cs" />
-    <Compile Include="TypeFetchRP5.cs" />
-    <Compile Include="TypeLoadFileRP5.cs" />
-    <Compile Include="TypeSynopticRP5.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Merge\29766.01.12.2020.17.12.2020.1.0.0.ru.ansi.00000000.csv.gz">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Merge\29766.10.12.2020.24.12.2020.1.0.0.ru.utf8.00000000.csv.gz">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Brainstable.RP5\Brainstable.RP5.csproj">
+      <Project>{715769a4-6b6f-4133-8cd7-ada2889e03b1}</Project>
+      <Name>Brainstable.RP5</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

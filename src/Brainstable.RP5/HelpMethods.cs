@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 
 namespace Brainstable.RP5
@@ -24,65 +23,6 @@ namespace Brainstable.RP5
                 encoding = Encoding.UTF8;
             }
             return encoding;
-        }
-
-        /// <summary>
-        /// Получить массив массивов данных из массива строк
-        /// </summary>
-        /// <param name="stringArray"></param>
-        /// <param name="schema"></param>
-        /// <returns></returns>
-        //public static string[][] GetArrayDataArray(string[] stringArray, string[] schema)
-        //{
-        //    string[][] data = new string[stringArray.Length][];
-        //    for (int i = 0; i < stringArray.Length; i++)
-        //    {
-        //        data[i] = HelpMethods.GetValuesFromLine(stringArray[i], schema.Length);
-        //    }
-
-        //    return data;
-        //}
-
-        //public static Dictionary<DateTime, string[]> GetDictionaryArrayData(string[] stringArray, string[] schema)
-        //{
-        //    Dictionary<DateTime, string[]> dict = new Dictionary<DateTime, string[]>();
-        //    string[] dataArray = null;
-        //    DateTime dt;
-        //    for (int i = 0; i < stringArray.Length; i++)
-        //    {
-        //        dataArray = GetValuesFromLine(stringArray[i], schema);
-        //        if (DateTime.TryParse(dataArray[0], out dt))
-        //        {
-        //            dict[dt] = dataArray;
-        //        }
-        //    }
-
-        //    return dict;
-        //}
-
-        /// <summary>
-        /// Создание отсортированного от минимума до максимума набора точек наблюдения
-        /// </summary>
-        /// <param name="points">Массив точек наблюдения</param>
-        /// <returns>Отсортированный набор точек наблюдения</returns>
-        public static SortedSet<ObservationPoint> CreateSortedSetObservationPointsDownInUp(ObservationPoint[] points)
-        {
-            SortedSet<ObservationPoint> set = new SortedSet<ObservationPoint>(new ObservationPointComparerDownInUp());
-            for (int i = 0; i < points.Length; i++)
-            {
-                set.Add(points[i]);
-            }
-            return set;
-        }
-
-        public static SortedSet<ObservationPoint> CreateSortedSetObservationPointsUpInDown(ObservationPoint[] points)
-        {
-            SortedSet<ObservationPoint> set = new SortedSet<ObservationPoint>(new ObservationPointComparerUpInDown());
-            for (int i = 0; i < points.Length; i++)
-            {
-                set.Add(points[i]);
-            }
-            return set;
         }
 
         /// <summary>
