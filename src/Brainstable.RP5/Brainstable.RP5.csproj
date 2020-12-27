@@ -36,6 +36,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DirectoryRP5.cs" />
     <Compile Include="GZ.cs" />
     <Compile Include="HelpMethods.cs" />
     <Compile Include="IReaderRP5.cs" />
