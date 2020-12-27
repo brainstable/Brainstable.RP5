@@ -58,9 +58,7 @@ namespace Brainstable.RP5
 
         public SynopticRP5(string identificator, string station, string country, TypeSynopticRP5 typeSynopticRp5) :
             this(identificator, station, country, typeSynopticRp5.ToString())
-        {
-
-        }
+        { }
 
         #endregion
 

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Brainstable.RP5
 {
@@ -22,6 +20,12 @@ namespace Brainstable.RP5
         public Encoding Encoding => encoding;
 
         #endregion
+        public SortedSet<ObservationPoint> ToSet(string fileName1)
+        {
+            IReaderRP5 reader1 = new ReaderRP5();
+            var set1 = reader1.ReadToSortedSetObservationPoints(fileName1, new ObservationPointComparerUpInDown());
+            return set1;
+        }
 
         public SortedSet<ObservationPoint> JoinToSet(string fileName1, string fileName2)
         {
@@ -55,12 +59,51 @@ namespace Brainstable.RP5
             return set1;
         }
 
-        public string JoinToFile(string fileName1, string fileName2)
+        public string ToFile(string outDirectory, string fileName1)
+        {
+            var set1 = ToSet(fileName1);
+
+            string outFilename = Path.Combine(outDirectory, CreateFileName(metaData.Synoptic.Identificator, set1.Max.DateTime, set1.Min.DateTime));
+
+            StreamWriter writer = new StreamWriter(outFilename, false, encoding);
+            WriteMetaData(writer, metaData, set1.Max.DateTime, set1.Min.DateTime);
+            WriteSchema(writer, schema.Schema);
+            WriteSet(writer, set1, schema.Schema);
+
+            writer.Close();
+            return outFilename;
+        }
+
+        public string ToFile(string fileName1)
+        {
+            return ToFile(Path.GetDirectoryName(fileName1), fileName1);
+        }
+
+        public string JoinToFile(string outDirectory, string fileName1, string fileName2)
         {
             var set1 = JoinToSet(fileName1, fileName2);
 
-            string outDir = Path.GetDirectoryName(fileName1);
-            string outFilename = Path.Combine(outDir, CreateFileName(metaData.Synoptic.Identificator, set1.Max.DateTime, set1.Min.DateTime));
+            string outFilename = Path.Combine(outDirectory, CreateFileName(metaData.Synoptic.Identificator, set1.Max.DateTime, set1.Min.DateTime));
+
+            StreamWriter writer = new StreamWriter(outFilename, false, encoding);
+            WriteMetaData(writer, metaData, set1.Max.DateTime, set1.Min.DateTime);
+            WriteSchema(writer, schema.Schema);
+            WriteSet(writer, set1, schema.Schema);
+
+            writer.Close();
+            return outFilename;
+        }
+
+        public string JoinToFile(string fileName1, string fileName2)
+        {
+            return JoinToFile(Path.GetDirectoryName(fileName1), fileName1, fileName2);
+        }
+
+        public string JoinToFile(string outDirectory, string fileName1, params string[] fileNames)
+        {
+            var set1 = JoinToSet(fileName1, fileNames);
+
+            string outFilename = Path.Combine(outDirectory, CreateFileName(metaData.Synoptic.Identificator, set1.Max.DateTime, set1.Min.DateTime));
 
             StreamWriter writer = new StreamWriter(outFilename, false, encoding);
             WriteMetaData(writer, metaData, set1.Max.DateTime, set1.Min.DateTime);
@@ -73,18 +116,7 @@ namespace Brainstable.RP5
 
         public string JoinToFile(string fileName1, params string[] fileNames)
         {
-            var set1 = JoinToSet(fileName1, fileNames);
-
-            string outDir = Path.GetDirectoryName(fileName1);
-            string outFilename = Path.Combine(outDir, CreateFileName(metaData.Synoptic.Identificator, set1.Max.DateTime, set1.Min.DateTime));
-
-            StreamWriter writer = new StreamWriter(outFilename, false, encoding);
-            WriteMetaData(writer, metaData, set1.Max.DateTime, set1.Min.DateTime);
-            WriteSchema(writer, schema.Schema);
-            WriteSet(writer, set1, schema.Schema);
-
-            writer.Close();
-            return outFilename;
+            return JoinToFile(Path.GetDirectoryName(fileName1), fileName1, fileNames);
         }
 
         private void WriteMetaData(StreamWriter writer, MetaDataRP5 meta, DateTime @from, DateTime to)
