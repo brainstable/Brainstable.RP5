@@ -45,15 +45,23 @@ namespace Brainstable.RP5
             return listFilesRP5.ToArray();
         }
 
-
         public void MergeFiles(string outDirectory)
         {
             foreach (var files in dict.Values)
             {
                 Merger merger = new Merger();
-                if (files.Count > 1)
+                if (files.Count == 1)
                 {
-                    merger.JoinToFile(outDirectory, files[0], files[1]);
+                    List<string> temp = new List<string>();
+                    for (int i = 1; i < files.Count; i++)
+                    {
+                        temp.Add(files[i]);
+                    }
+                    merger.JoinToFile(outDirectory, files[0], temp.ToArray());
+                }
+                else if (files.Count == 1)
+                {
+                    merger.ToFile(outDirectory, files[0]);
                 }
             }
         }
