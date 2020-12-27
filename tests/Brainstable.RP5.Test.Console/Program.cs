@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Brainstable.RP5.Test.Console
 {
@@ -38,8 +34,6 @@ namespace Brainstable.RP5.Test.Console
             {
                 Directory.CreateDirectory(outDir);
             }
-
-            
 
             directory.MergeFiles(outDir);
             DateTime end = DateTime.Now;
