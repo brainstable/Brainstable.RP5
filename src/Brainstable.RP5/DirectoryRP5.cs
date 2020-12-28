@@ -46,7 +46,7 @@ namespace Brainstable.RP5
             foreach (var files in dict.Values)
             {
                 Merger merger = new Merger();
-                if (files.Count == 1)
+                if (files.Count > 1)
                 {
                     List<string> temp = new List<string>();
                     for (int i = 1; i < files.Count; i++)

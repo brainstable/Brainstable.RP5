@@ -24,6 +24,8 @@ namespace Brainstable.RP5
         {
             IReaderRP5 reader1 = new ReaderRP5();
             var set1 = reader1.ReadToSortedSetObservationPoints(fileName1, new ObservationPointComparerUpInDown());
+            metaData = reader1.MetaData;
+            schema = reader1.Schema;
             return set1;
         }
 
