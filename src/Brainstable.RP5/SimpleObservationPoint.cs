@@ -37,11 +37,11 @@ namespace Brainstable.RP5
             try
             {
                 p = new SimpleObservationPoint();
-                p.DateTime = Convert.ToDateTime(stringValues[0].Replace("\"", ""));
+                p.DateTime = Convert.ToDateTime(stringValues[0].Replace("\"", "").Replace('.', ','));
                 if (structure.ContainsKey("T"))
                 {
                     double t;
-                    if (Double.TryParse(stringValues[structure["T"]].Replace("\"", ""), out t))
+                    if (Double.TryParse(stringValues[structure["T"]].Replace("\"", "").Replace('.', ','), out t))
                     {
                         p.Temperature = t;
                     }
@@ -50,7 +50,7 @@ namespace Brainstable.RP5
                 if (structure.ContainsKey("TN"))
                 {
                     double t;
-                    if (Double.TryParse(stringValues[structure["TN"]].Replace("\"", ""), out t))
+                    if (Double.TryParse(stringValues[structure["TN"]].Replace("\"", "").Replace('.', ','), out t))
                     {
                         p.MinTemperature = t;
                     }
@@ -59,7 +59,7 @@ namespace Brainstable.RP5
                 if (structure.ContainsKey("TX"))
                 {
                     double t;
-                    if (Double.TryParse(stringValues[structure["TX"]].Replace("\"", ""), out t))
+                    if (Double.TryParse(stringValues[structure["TX"]].Replace("\"", "").Replace('.', ','), out t))
                     {
                         p.MaxTemperature = t;
                     }
@@ -68,7 +68,7 @@ namespace Brainstable.RP5
                 if (structure.ContainsKey("RRR"))
                 {
                     double t;
-                    if (Double.TryParse(stringValues[structure["RRR"]].Replace("\"", ""), out t))
+                    if (Double.TryParse(stringValues[structure["RRR"]].Replace("\"", "").Replace('.', ','), out t))
                     {
                         p.Rainfall = t;
                     }
@@ -77,7 +77,7 @@ namespace Brainstable.RP5
                 if (structure.ContainsKey("SSS"))
                 {
                     double t;
-                    if (Double.TryParse(stringValues[structure["SSS"]].Replace("\"", ""), out t))
+                    if (Double.TryParse(stringValues[structure["SSS"]].Replace("\"", "").Replace('.', ','), out t))
                     {
                         p.SnowHight = t;
                     }

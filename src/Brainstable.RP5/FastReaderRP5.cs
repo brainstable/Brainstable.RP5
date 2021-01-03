@@ -262,6 +262,7 @@ namespace Brainstable.RP5
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
             }
             return list;
         }
