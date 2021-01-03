@@ -11,7 +11,6 @@ namespace Brainstable.RP5
     public class ReaderRP5 : IReaderRP5, IDisposable
     {
         private MetaDataRP5 metaDataRp5;
-        private string[] stringArrayData;
         private SchemaRP5 schema;
         private Encoding encoding;
         private TypeLoadFileRP5 typeLoadFileRp5 = TypeLoadFileRP5.Unknown;

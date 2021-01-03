@@ -113,10 +113,7 @@ namespace Brainstable.RP5
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
-                throw;
             }
-
             return list;
         }
 
@@ -141,8 +138,6 @@ namespace Brainstable.RP5
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
-                throw;
             }
 
             return dictionary;
@@ -173,8 +168,6 @@ namespace Brainstable.RP5
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
-                throw;
             }
             return list;
         }
@@ -205,8 +198,6 @@ namespace Brainstable.RP5
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
-                throw;
             }
             return dictionary;
         }
@@ -237,8 +228,6 @@ namespace Brainstable.RP5
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
-                throw;
             }
             return set;
         }
@@ -246,6 +235,35 @@ namespace Brainstable.RP5
         public static SortedSet<ObservationPoint> ReadSortedSetObservationPointsFromCsv(string fileName)
         {
             return ReadSortedSetObservationPointsFromCsv(fileName, new ObservationPointComparerUpInDown());
+        }
+
+        public static List<SimpleObservationPoint> ReadListSimpleObservationPointsFromCsv(string fileName)
+        {
+            List<SimpleObservationPoint> list = new List<SimpleObservationPoint>();
+            try
+            {
+                int counter = 0;
+                string line;
+                StreamReader file = new StreamReader(fileName, HelpMethods.CreateEncoding(fileName));
+                SchemaRP5 schema = null;
+                while ((line = file.ReadLine()) != null)
+                {
+                    if (counter == 6)
+                    {
+                        schema = CreateSchemaRp5(line);
+                    }
+                    if (counter > 6)
+                    {
+                        list.Add(SimpleObservationPoint.CreateFromLine(line, schema));
+                    }
+                    counter++;
+                }
+                file.Close();
+            }
+            catch (Exception ex)
+            {
+            }
+            return list;
         }
     }
 }
