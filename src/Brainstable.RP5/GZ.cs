@@ -6,7 +6,7 @@ namespace Brainstable.RP5
     /// <summary>
     /// Архив GZ
     /// </summary>
-    internal static class GZ
+    public static class GZ
     {
         /// <summary>
         /// Извлечение архива в папку
