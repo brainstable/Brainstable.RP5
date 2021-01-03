@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqLite\Database.cs" />
+    <Compile Include="SqLite\Table.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Brainstable.RP5\Brainstable.RP5.csproj">

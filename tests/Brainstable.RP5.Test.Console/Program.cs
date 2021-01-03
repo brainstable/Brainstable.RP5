@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using Brainstable.RP5.Data.SqLite;
 
 namespace Brainstable.RP5.Test.Console
 {
@@ -43,8 +44,28 @@ namespace Brainstable.RP5.Test.Console
             //System.Console.WriteLine(end - start);
             //System.Console.WriteLine("Нажмите любую клавишу");
 
-            LoadSimpleObservetionPoints(fileName3);
+            //LoadSimpleObservetionPoints(fileName3);
+
+            CreateDatabase();
+
             System.Console.ReadKey();
+        }
+
+        private static void CreateDatabase()
+        {
+            Database.CreateDatabase("data\\mydatabase1.db", true);
+            string conn = "data source=data\\mydatabase1.db";
+            System.Console.WriteLine(Table.TableExists("MeteoStations", conn));
+            Table.DeleteTable("MeteoStations", conn);
+            System.Console.WriteLine(Table.TableExists("MeteoStations", conn));
+            Table.CreateTableMeteoStations(conn);
+            Table.CreateTableMeteoDataByYears("29566", conn);
+            Table.CreateTableMeteoDataByMonth("29566", conn);
+            Table.CreateTableMeteoDataByDays("29566", conn);
+            Table.CreateTableMeteoDataByDecades("29566", conn);
+            Table.CreateTableMeteoDataByFiveDays("29566", conn);
+            Table.CreateTableMeteoDataByPoints("29566", conn);
+            System.Console.WriteLine(Table.TableExists("MeteoStations", conn));
         }
 
         private static void LoadSimpleObservetionPoints(string fileName)
