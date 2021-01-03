@@ -49,6 +49,7 @@
     <Compile Include="FastReaderRP5.cs" />
     <Compile Include="ReaderRP5.cs" />
     <Compile Include="SchemaRP5.cs" />
+    <Compile Include="SimpleObservationPoint.cs" />
     <Compile Include="SynopticRP5.cs" />
     <Compile Include="TypeFetchRP5.cs" />
     <Compile Include="TypeLoadFileRP5.cs" />
