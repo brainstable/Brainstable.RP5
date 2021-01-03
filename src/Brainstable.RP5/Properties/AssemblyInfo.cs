@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Brainstable.RP5")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Brainstable")]
+[assembly: AssemblyCompany("Mozgovoy Sergey")]
 [assembly: AssemblyProduct("Brainstable.RP5")]
-[assembly: AssemblyCopyright("Copyright © Brainstable 2020")]
+[assembly: AssemblyCopyright("Copyright © Brainstable 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
