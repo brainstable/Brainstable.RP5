@@ -11,18 +11,7 @@ namespace Brainstable.RP5.Data.SqLite
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"DROP TABLE IF EXISTS [{nameTable}];");
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            {
-                if (connection.State == ConnectionState.Closed)
-                {
-                    connection.Open();
-                }
-
-                using (SQLiteCommand cmd = new SQLiteCommand(sb.ToString(), connection))
-                {
-                    cmd.ExecuteNonQuery();
-                }
-            }
+            Query.RunExcuteNonQuery(sb.ToString(), connectionString);
         }
 
         public static void CreateTableMeteoStations(string connectionString)
@@ -33,24 +22,12 @@ namespace Brainstable.RP5.Data.SqLite
             sb.AppendLine(", [Name] TEXT NOT NULL");
             sb.AppendLine(", [Country] TEXT NOT NULL");
             sb.AppendLine(", [TypeId] TEXT NOT NULL");
-            sb.AppendLine(", [Site] TEXT NOT NULL");
             sb.AppendLine(", [Link] TEXT NOT NULL");
-            sb.AppendLine(", [StartFetch] TEXT NOT NULL");
-            sb.AppendLine(", [EndFetch] TEXT NOT NULL");
+            sb.AppendLine(", [StartFetch] TEXT NULL");
+            sb.AppendLine(", [EndFetch] TEXT NULL");
             sb.AppendLine(");");
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            {
-                if (connection.State == ConnectionState.Closed)
-                {
-                    connection.Open();
-                }
-
-                using (SQLiteCommand cmd = new SQLiteCommand(sb.ToString(), connection))
-                {
-                    cmd.ExecuteNonQuery();
-                }
-            }
+            Query.RunExcuteNonQuery(sb.ToString(), connectionString);
         }
 
         public static void CreateTableMeteoDataByYears(string meteoStationId, string connectionString)
@@ -88,25 +65,14 @@ namespace Brainstable.RP5.Data.SqLite
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"CREATE TABLE IF NOT EXISTS [_{meteoStationId}{suffix}] (");
             sb.AppendLine("[Date] TEXT PRIMARY KEY");
-            sb.AppendLine(", [T] REAL NULL");
-            sb.AppendLine(", [TN] REAL NULL");
-            sb.AppendLine(", [TX] REAL NULL");
-            sb.AppendLine(", [R] REAL NULL");
-            sb.AppendLine(", [SH] REAL NULL");
+            sb.AppendLine(", [T] DECIMAL(10, 5) NULL");
+            sb.AppendLine(", [TN] DECIMAL(10, 5) NULL");
+            sb.AppendLine(", [TX] DECIMAL(10, 5) NULL");
+            sb.AppendLine(", [R] DECIMAL(10, 5) NULL");
+            sb.AppendLine(", [SH] DECIMAL(10, 5) NULL");
             sb.AppendLine(");");
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            {
-                if (connection.State == ConnectionState.Closed)
-                {
-                    connection.Open();
-                }
-
-                using (SQLiteCommand cmd = new SQLiteCommand(sb.ToString(), connection))
-                {
-                    cmd.ExecuteNonQuery();
-                }
-            }
+            Query.RunExcuteNonQuery(sb.ToString(), connectionString);
         }
 
         public static bool TableExists(string nameTable, string connectionString)
