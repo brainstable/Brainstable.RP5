@@ -20,6 +20,7 @@ namespace Brainstable.RP5
         public Encoding Encoding => encoding;
 
         #endregion
+
         public SortedSet<ObservationPoint> ToSet(string fileName1)
         {
             IReaderRP5 reader1 = new ReaderRP5();

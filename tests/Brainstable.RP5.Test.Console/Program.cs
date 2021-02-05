@@ -27,23 +27,23 @@ namespace Brainstable.RP5.Test.Console
 
             // Merger files
             //DateTime start = DateTime.Now;
-            //DirectoryRP5 directory = new DirectoryRP5("FilesRP5");
-            //for (int i = 0; i < directory.Files.Length; i++)
-            //{
-            //    System.Console.WriteLine(directory.Files[i]);
-            //}
+            DirectoryRP5 directory = new DirectoryRP5("kuragino");
+            for (int i = 0; i < directory.Files.Length; i++)
+            {
+                System.Console.WriteLine(directory.Files[i]);
+            }
 
             //if (!Directory.Exists(outDir))
             //{
             //    Directory.CreateDirectory(outDir);
             //}
 
-            //directory.MergeFiles(outDir);
+            directory.MergeFiles("kuragino");
             //DateTime end = DateTime.Now;
             //System.Console.WriteLine(end - start);
             //System.Console.WriteLine("Нажмите любую клавишу");
 
-            LoadSimpleObservetionPoints(fileName3);
+            //LoadSimpleObservetionPoints(fileName3);
             System.Console.ReadKey();
         }
 

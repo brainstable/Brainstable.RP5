@@ -33,10 +33,15 @@ namespace Brainstable.RP5
                 file.Close();
                 meta = MetaDataRP5.CreateFromArrayString(arr);
             }
-            catch (Exception e)
+            catch (IOException ex)
             {
-
+                throw new IOException(ex.Message, ex.InnerException);
             }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex.InnerException);
+            }
+
             return meta;
         }
 
@@ -62,10 +67,13 @@ namespace Brainstable.RP5
                 file.Close();
                 schema = CreateSchemaRp5(line);
             }
+            catch (IOException ex)
+            {
+                throw new IOException(ex.Message, ex.InnerException);
+            }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
-                throw;
+                throw new Exception(ex.Message, ex.InnerException);
             }
 
             return schema;
@@ -107,13 +115,21 @@ namespace Brainstable.RP5
                     {
                         list.Add(line);
                     }
+
                     counter++;
                 }
+
                 file.Close();
+            }
+            catch (IOException ex)
+            {
+                throw new IOException(ex.Message, ex.InnerException);
             }
             catch (Exception ex)
             {
+                throw new Exception(ex.Message, ex.InnerException);
             }
+
             return list;
         }
 
@@ -136,8 +152,13 @@ namespace Brainstable.RP5
                 }
                 file.Close();
             }
+            catch (IOException ex)
+            {
+                throw new IOException(ex.Message, ex.InnerException);
+            }
             catch (Exception ex)
             {
+                throw new Exception(ex.Message, ex.InnerException);
             }
 
             return dictionary;
@@ -166,9 +187,15 @@ namespace Brainstable.RP5
                 }
                 file.Close();
             }
+            catch (IOException ex)
+            {
+                throw new IOException(ex.Message, ex.InnerException);
+            }
             catch (Exception ex)
             {
+                throw new Exception(ex.Message, ex.InnerException);
             }
+
             return list;
         }
 
@@ -196,9 +223,15 @@ namespace Brainstable.RP5
                 }
                 file.Close();
             }
+            catch (IOException ex)
+            {
+                throw new IOException(ex.Message, ex.InnerException);
+            }
             catch (Exception ex)
             {
+                throw new Exception(ex.Message, ex.InnerException);
             }
+
             return dictionary;
         }
 
@@ -226,9 +259,15 @@ namespace Brainstable.RP5
                 }
                 file.Close();
             }
+            catch (IOException ex)
+            {
+                throw new IOException(ex.Message, ex.InnerException);
+            }
             catch (Exception ex)
             {
+                throw new Exception(ex.Message, ex.InnerException);
             }
+
             return set;
         }
 
@@ -260,10 +299,15 @@ namespace Brainstable.RP5
                 }
                 file.Close();
             }
+            catch (IOException ex)
+            {
+                throw new IOException(ex.Message, ex.InnerException);
+            }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception(ex.Message, ex.InnerException);
             }
+
             return list;
         }
     }

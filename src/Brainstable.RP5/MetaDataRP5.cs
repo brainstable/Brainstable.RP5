@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace Brainstable.RP5
 {
@@ -10,7 +9,7 @@ namespace Brainstable.RP5
     public class MetaDataRP5
     {
 
-        #region fields
+        #region Fields
 
         private static Dictionary<string, int> months = new Dictionary<string, int>();
 
@@ -274,6 +273,4 @@ namespace Brainstable.RP5
 
         #endregion
     }
-
-    
 }

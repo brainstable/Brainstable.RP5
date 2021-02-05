@@ -111,9 +111,9 @@ namespace Brainstable.RP5
                 synopticRp5.TypeSynopticRp5 = CreateTypeSynoptic(s1[2].Split('=')[0]);
                 synopticRp5.Identificator = s1[2].Split('=')[1];
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                    
+                throw new Exception(ex.Message, ex.InnerException);
             }
             return synopticRp5;
         }
